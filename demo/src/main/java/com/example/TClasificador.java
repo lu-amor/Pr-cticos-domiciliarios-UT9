@@ -43,7 +43,7 @@ public class TClasificador {
 	 * @param datosParaClasificar
 	 * @return
 	 */
-	private int[] ordenarPorShell(int[] datosParaClasificar) {
+	public int[] ordenarPorShell(int[] datosParaClasificar) {
 		int j, inc;
 		int[] incrementos = new int[] { 3223, 358, 51, 10, 3, 1 };
 
@@ -68,7 +68,7 @@ public class TClasificador {
 	 * @param datosParaClasificar
 	 * @return
 	 */
-	protected int[] ordenarPorInsercion(int[] datosParaClasificar) {
+	public int[] ordenarPorInsercion(int[] datosParaClasificar) {
 		if (datosParaClasificar != null) {
 			for (int i = 1; i < datosParaClasificar.length; i++) {
 				int j = i - 1;
@@ -82,7 +82,7 @@ public class TClasificador {
 		return null;
 	}
 
-	private int[] ordenarPorBurbuja(int[] datosParaClasificar) {
+	public int[] ordenarPorBurbuja(int[] datosParaClasificar) {
 		int n = datosParaClasificar.length - 1;
 		for (int i = 0; i <= n; i++) {
 			for (int j = n; j >= (i + 1); j--) {
@@ -94,7 +94,7 @@ public class TClasificador {
 		return datosParaClasificar;
 	}
 
-	protected int[] ordenarPorQuickSort(int[] datosParaClasificar) {
+	public int[] ordenarPorQuickSort(int[] datosParaClasificar) {
 		quicksort(datosParaClasificar, 0, datosParaClasificar.length - 1);
 		return datosParaClasificar;
 	}
