@@ -73,13 +73,26 @@ public class TClasificadorTest {
     @Test
     public void testOrdenarPorHeapSort() {
         TClasificador clasif = new TClasificador();
-        assertArrayEquals(new int[0], clasif.ordenarPorHeapSort(vectorVacio, true));
+        assertArrayEquals(new int[0], clasif.ordenarPorHeapSort(vectorVacio, false));
         assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorHeapSort(vectorAscendente, false)); // Orden n log n
         assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorHeapSort(vectorDescendente, false)); // Orden n log n
         assertArrayEquals(new int[] {0, 1, 3, 4}, clasif.ordenarPorHeapSort(vectorAleatorio, false)); // Orden n log n
         assertArrayEquals(new int[] {1, 1, 1, 1, 1}, clasif.ordenarPorHeapSort(vectorIguales, false));
         assertArrayEquals(new int[] {-5, -4, -3, -2, -1}, clasif.ordenarPorHeapSort(vectorNegativos, false));
         assertArrayEquals(new int[] {-5, -3, -1, 2, 4}, clasif.ordenarPorHeapSort(vectorNegativosPositivos, false));
+        // el orden de espacio es constante porque es inplace, solo usa un int extra para intercambiar
+    }
+
+    @Test
+    public void testOrdenarPorSeleccionDirecta() {
+        TClasificador clasif = new TClasificador();
+        assertArrayEquals(new int[0], clasif.ordenarPorSeleccionDirecta(vectorVacio, true));
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorSeleccionDirecta(vectorAscendente, true)); // Orden n²
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorSeleccionDirecta(vectorDescendente, true)); // Orden n²
+        assertArrayEquals(new int[] {0, 1, 3, 4}, clasif.ordenarPorSeleccionDirecta(vectorAleatorio, true)); // Orden n²
+        assertArrayEquals(new int[] {1, 1, 1, 1, 1}, clasif.ordenarPorSeleccionDirecta(vectorIguales, true));
+        assertArrayEquals(new int[] {-5, -4, -3, -2, -1}, clasif.ordenarPorSeleccionDirecta(vectorNegativos, true));
+        assertArrayEquals(new int[] {-5, -3, -1, 2, 4}, clasif.ordenarPorSeleccionDirecta(vectorNegativosPositivos, true));
         // el orden de espacio es constante porque es inplace, solo usa un int extra para intercambiar
     }
 }

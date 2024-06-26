@@ -221,4 +221,17 @@ public class TClasificador {
 			}
 		}
 	}
+
+	public int[] ordenarPorSeleccionDirecta(int[] datosParaClasificar, boolean ascendente) {
+		for (int i = 0; i < datosParaClasificar.length - 1; i++) {
+			int posMinimo = i;
+			for (int j = i + 1; j < datosParaClasificar.length; j++) {
+				if ((ascendente && datosParaClasificar[j] < datosParaClasificar[posMinimo]) || (!ascendente && datosParaClasificar[j] > datosParaClasificar[posMinimo])) {
+					posMinimo = j;
+				}
+			}
+			intercambiar(datosParaClasificar, i, posMinimo);
+		}
+		return datosParaClasificar;
+	}
 }
