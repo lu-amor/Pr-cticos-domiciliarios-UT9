@@ -33,42 +33,53 @@ public class TClasificadorTest {
     @Test
     public void testOrdenarPorInsercion() {
         TClasificador clasif = new TClasificador();
-        assertArrayEquals(new int[0], clasif.ordenarPorInsercion(vectorVacio));
-        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorInsercion(vectorAscendente)); //Orden 1
-        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorInsercion(vectorDescendente)); // Orden n
-        assertArrayEquals(new int[] {0, 1, 3, 4}, clasif.ordenarPorInsercion(vectorAleatorio)); // Orden n^2
-        assertArrayEquals(new int[] {1, 1, 1, 1, 1}, clasif.ordenarPorInsercion(vectorIguales));
-        assertArrayEquals(new int[] {-5, -4, -3, -2, -1}, clasif.ordenarPorInsercion(vectorNegativos));
-        assertArrayEquals(new int[] {-5, -3, -1, 2, 4}, clasif.ordenarPorInsercion(vectorNegativosPositivos));
-        assertArrayEquals(null, clasif.ordenarPorInsercion(vectorInvalido));
+        assertArrayEquals(new int[0], clasif.ordenarPorInsercion(vectorVacio, true));
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorInsercion(vectorAscendente, true)); //Orden 1
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorInsercion(vectorDescendente, true)); // Orden n
+        assertArrayEquals(new int[] {0, 1, 3, 4}, clasif.ordenarPorInsercion(vectorAleatorio, true)); // Orden n^2
+        assertArrayEquals(new int[] {1, 1, 1, 1, 1}, clasif.ordenarPorInsercion(vectorIguales, true));
+        assertArrayEquals(new int[] {-5, -4, -3, -2, -1}, clasif.ordenarPorInsercion(vectorNegativos, true));
+        assertArrayEquals(new int[] {-5, -3, -1, 2, 4}, clasif.ordenarPorInsercion(vectorNegativosPositivos, true));
+        assertArrayEquals(null, clasif.ordenarPorInsercion(vectorInvalido, true));
         // el orden de espacio es constante porque es inplace, solo usa un int extra para intercambiar
     }
 
     @Test
     public void testOrdenarPorShell() {
         TClasificador clasif = new TClasificador();
-        assertArrayEquals(new int[0], clasif.ordenarPorShell(vectorVacio));
-        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorShell(vectorAscendente)); // Orden n^1.26¿?
-        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorShell(vectorDescendente)); // Orden n^1.26¿?
-        assertArrayEquals(new int[] {0, 1, 3, 4}, clasif.ordenarPorShell(vectorAleatorio)); // Orden n^1.26¿?
-        assertArrayEquals(new int[] {1, 1, 1, 1, 1}, clasif.ordenarPorShell(vectorIguales));
-        assertArrayEquals(new int[] {-5, -4, -3, -2, -1}, clasif.ordenarPorShell(vectorNegativos));
-        assertArrayEquals(new int[] {-5, -3, -1, 2, 4}, clasif.ordenarPorShell(vectorNegativosPositivos));
-        //assertArrayEquals(null, clasif.ordenarPorShell(vectorInvalido));
+        assertArrayEquals(new int[0], clasif.ordenarPorShell(vectorVacio, true));
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorShell(vectorAscendente, true)); // Orden n^1.26¿?
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorShell(vectorDescendente, true)); // Orden n^1.26¿?
+        assertArrayEquals(new int[] {0, 1, 3, 4}, clasif.ordenarPorShell(vectorAleatorio, true)); // Orden n^1.26¿?
+        assertArrayEquals(new int[] {1, 1, 1, 1, 1}, clasif.ordenarPorShell(vectorIguales, true));
+        assertArrayEquals(new int[] {-5, -4, -3, -2, -1}, clasif.ordenarPorShell(vectorNegativos, true));
+        assertArrayEquals(new int[] {-5, -3, -1, 2, 4}, clasif.ordenarPorShell(vectorNegativosPositivos, true));
         // el orden de espacio es constante porque es inplace, solo usa un int extra para intercambiar
     }
 
     @Test
     public void testOrdenarPorBurbuja() {
         TClasificador clasif = new TClasificador();
-        assertArrayEquals(new int[0], clasif.ordenarPorBurbuja(vectorVacio));
-        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorBurbuja(vectorAscendente)); // Orden n^2
-        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorBurbuja(vectorDescendente)); // Orden n^2
-        assertArrayEquals(new int[] {0, 1, 3, 4}, clasif.ordenarPorBurbuja(vectorAleatorio)); // Orden n^2
-        assertArrayEquals(new int[] {1, 1, 1, 1, 1}, clasif.ordenarPorBurbuja(vectorIguales));
-        assertArrayEquals(new int[] {-5, -4, -3, -2, -1}, clasif.ordenarPorBurbuja(vectorNegativos));
-        assertArrayEquals(new int[] {-5, -3, -1, 2, 4}, clasif.ordenarPorBurbuja(vectorNegativosPositivos));
-        //assertArrayEquals(null, clasif.ordenarPorShell(vectorInvalido));
+        assertArrayEquals(new int[0], clasif.ordenarPorBurbuja(vectorVacio, true));
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorBurbuja(vectorAscendente, true)); // Orden n^2
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorBurbuja(vectorDescendente, true)); // Orden n^2
+        assertArrayEquals(new int[] {0, 1, 3, 4}, clasif.ordenarPorBurbuja(vectorAleatorio, true)); // Orden n^2
+        assertArrayEquals(new int[] {1, 1, 1, 1, 1}, clasif.ordenarPorBurbuja(vectorIguales, true));
+        assertArrayEquals(new int[] {-5, -4, -3, -2, -1}, clasif.ordenarPorBurbuja(vectorNegativos, true));
+        assertArrayEquals(new int[] {-5, -3, -1, 2, 4}, clasif.ordenarPorBurbuja(vectorNegativosPositivos, true));
+        // el orden de espacio es constante porque es inplace, solo usa un int extra para intercambiar
+    }
+
+    @Test
+    public void testOrdenarPorHeapSort() {
+        TClasificador clasif = new TClasificador();
+        assertArrayEquals(new int[0], clasif.ordenarPorHeapSort(vectorVacio, true));
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorHeapSort(vectorAscendente, false)); // Orden n log n
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorHeapSort(vectorDescendente, false)); // Orden n log n
+        assertArrayEquals(new int[] {0, 1, 3, 4}, clasif.ordenarPorHeapSort(vectorAleatorio, false)); // Orden n log n
+        assertArrayEquals(new int[] {1, 1, 1, 1, 1}, clasif.ordenarPorHeapSort(vectorIguales, false));
+        assertArrayEquals(new int[] {-5, -4, -3, -2, -1}, clasif.ordenarPorHeapSort(vectorNegativos, false));
+        assertArrayEquals(new int[] {-5, -3, -1, 2, 4}, clasif.ordenarPorHeapSort(vectorNegativosPositivos, false));
         // el orden de espacio es constante porque es inplace, solo usa un int extra para intercambiar
     }
 }

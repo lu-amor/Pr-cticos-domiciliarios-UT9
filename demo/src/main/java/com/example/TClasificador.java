@@ -16,16 +16,16 @@ public class TClasificador {
 	 * @param tamanioVector
 	 * @return Un vector del tam. solicitado, ordenado por el algoritmo solicitado
 	 */
-	public int[] clasificar(int[] datosParaClasificar, int metodoClasificacion) {
+	public int[] clasificar(int[] datosParaClasificar, int metodoClasificacion, boolean ascendente) {
 		switch (metodoClasificacion) {
 			case METODO_CLASIFICACION_INSERCION:
-				return ordenarPorInsercion(datosParaClasificar);
+				return ordenarPorInsercion(datosParaClasificar, ascendente);
 			case METODO_CLASIFICACION_SHELL:
-				return ordenarPorShell(datosParaClasificar);
+				return ordenarPorShell(datosParaClasificar, ascendente);
 			case METODO_CLASIFICACION_BURBUJA:
-				return ordenarPorBurbuja(datosParaClasificar);
+				return ordenarPorBurbuja(datosParaClasificar, ascendente);
 			case METODO_CLASIFICACION_QUICKSORT:
-				return ordenarPorQuickSort(datosParaClasificar);
+				return ordenarPorQuickSort(datosParaClasificar, ascendente);
 			default:
 				System.err.println("Este codigo no deberia haberse ejecutado");
 				break;
@@ -43,20 +43,21 @@ public class TClasificador {
 	 * @param datosParaClasificar
 	 * @return
 	 */
-	public int[] ordenarPorShell(int[] datosParaClasificar) {
+	public int[] ordenarPorShell(int[] datosParaClasificar, boolean ascendente) {
 		int j, inc;
-		int[] incrementos = new int[] { 3223, 358, 51, 10, 3, 1 };
-
+		int[] incrementos = new int[]{3223, 358, 51, 10, 3, 1};
+	
 		for (int posIncrementoActual = 0; posIncrementoActual < incrementos.length; posIncrementoActual++) {
 			inc = incrementos[posIncrementoActual];
 			if (inc < (datosParaClasificar.length / 2)) {
 				for (int i = inc; i < datosParaClasificar.length; i++) {
 					j = i - inc;
 					while (j >= 0) {
-						if (datosParaClasificar[j] > datosParaClasificar[j + inc]) {
+						if ((ascendente && datosParaClasificar[j] > datosParaClasificar[j + inc]) ||
+							(!ascendente && datosParaClasificar[j] < datosParaClasificar[j + inc])) {
 							intercambiar(datosParaClasificar, j, j + inc);
 						}
-							j -= inc;
+						j -= inc;
 					}
 				}
 			}
@@ -68,13 +69,20 @@ public class TClasificador {
 	 * @param datosParaClasificar
 	 * @return
 	 */
-	public int[] ordenarPorInsercion(int[] datosParaClasificar) {
+	public int[] ordenarPorInsercion(int[] datosParaClasificar, boolean ascendente) {
 		if (datosParaClasificar != null) {
 			for (int i = 1; i < datosParaClasificar.length; i++) {
 				int j = i - 1;
-				while ((j >= 0) && (datosParaClasificar[j + 1] < datosParaClasificar[j])) {
-					intercambiar(datosParaClasificar, j, j + 1);
-					j--;
+				if (ascendente) {
+					while ((j >= 0) && (datosParaClasificar[j + 1] < datosParaClasificar[j])) {
+						intercambiar(datosParaClasificar, j, j + 1);
+						j--;
+					}
+				} else {
+					while ((j >= 0) && (datosParaClasificar[j + 1] > datosParaClasificar[j])) {
+						intercambiar(datosParaClasificar, j, j + 1);
+						j--;
+					}
 				}
 			}
 			return datosParaClasificar;
@@ -82,34 +90,49 @@ public class TClasificador {
 		return null;
 	}
 
-	public int[] ordenarPorBurbuja(int[] datosParaClasificar) {
+	public int[] ordenarPorBurbuja(int[] datosParaClasificar, boolean ascendente) {
 		int n = datosParaClasificar.length - 1;
 		for (int i = 0; i <= n; i++) {
 			for (int j = n; j >= (i + 1); j--) {
-				if (datosParaClasificar[j] < datosParaClasificar[j - 1]) {
-					intercambiar(datosParaClasificar, j - 1, j);
+				if (ascendente) {
+					if (datosParaClasificar[j] < datosParaClasificar[j - 1]) {
+						intercambiar(datosParaClasificar, j - 1, j);
+					}
+				} else {
+					if (datosParaClasificar[j] > datosParaClasificar[j - 1]) {
+						intercambiar(datosParaClasificar, j - 1, j);
+					}
 				}
 			}
 		}
 		return datosParaClasificar;
 	}
 
-	public int[] ordenarPorQuickSort(int[] datosParaClasificar) {
-		quicksort(datosParaClasificar, 0, datosParaClasificar.length - 1);
+	public int[] ordenarPorQuickSort(int[] datosParaClasificar, boolean ascendente) {
+		quicksort(datosParaClasificar, 0, datosParaClasificar.length - 1, ascendente);
 		return datosParaClasificar;
 	}
 	
-	private void quicksort(int[] entrada, int izquierda, int derecha) {
+	private void quicksort(int[] entrada, int izquierda, int derecha, boolean ascendente) {
 		if (izquierda < derecha) {
 			int posicionPivote = encuentraPivote(izquierda, derecha, entrada);
 			int pivote = entrada[posicionPivote];
 			int i = izquierda, j = derecha;
 			while (i <= j) {
-				while (entrada[i] < pivote) {
-					i++;
-				}
-				while (entrada[j] > pivote) {
-					j--;
+				if (ascendente) {
+					while (entrada[i] < pivote) {
+						i++;
+					}
+					while (entrada[j] > pivote) {
+						j--;
+					}
+				} else {
+					while (entrada[i] > pivote) {
+						i++;
+					}
+					while (entrada[j] < pivote) {
+						j--;
+					}
 				}
 				if (i <= j) {
 					intercambiar(entrada, i, j);
@@ -118,9 +141,9 @@ public class TClasificador {
 				}
 			}
 			if (izquierda < j)
-				quicksort(entrada, izquierda, j);
+				quicksort(entrada, izquierda, j, ascendente);
 			if (i < derecha)
-				quicksort(entrada, i, derecha);
+				quicksort(entrada, i, derecha, ascendente);
 		}
 	}
 	
@@ -129,28 +152,28 @@ public class TClasificador {
 		return izquierda + rnd.nextInt(derecha - izquierda + 1);
 	}
 
-	public static boolean estaOrdenado(int[] vector, boolean orden, boolean estricto) {
+	public static boolean estaOrdenado(int[] vector, boolean ascendente, boolean estricto) {
 		boolean res = false;
 		for (int i = 0; i < vector.length - 1; i++) {
-			if (orden == true && estricto == true) {
+			if (ascendente == true && estricto == true) {
 				if (vector[i] < vector[i + 1]) {
 					res = true;
 				} else {
 					return false;
 				}
-			} else if (orden == true && estricto == false) {
+			} else if (ascendente == true && estricto == false) {
 				if (vector[i] <= vector[i + 1]) {
 					res = true;
 				} else {
 					return false;
 				}
-			} else if (orden == false && estricto == true) {
+			} else if (ascendente == false && estricto == true) {
 				if (vector[i] > vector[i + 1]) {
 					res = true;
 				} else {
 					return false;
 				}
-			} else if (orden == false && estricto == false) {
+			} else if (ascendente == false && estricto == false) {
 				if (vector[i] >= vector[i + 1]) {
 					res = true;
 				} else {
@@ -161,44 +184,41 @@ public class TClasificador {
 		return res;
 	}
 
-	public static void main(String args[]) {
-		TClasificador clasif = new TClasificador();
-		GeneradorDatosGenericos gdg = new GeneradorDatosGenericos();
-		int[] vectorAleatorio = gdg.generarDatosAleatorios();
-		int[] vectorAleatorio2 = gdg.generarDatosAleatorios();
-		int[] vectorAleatorio3 = gdg.generarDatosAleatorios();
-		int[] vectorAleatorio4 = gdg.generarDatosAleatorios();
-
-		int[] resAleatorio = clasif.clasificar(vectorAleatorio,METODO_CLASIFICACION_INSERCION);
-		for (int i = 0; i < resAleatorio.length; i++) {
-			System.out.print(resAleatorio[i] + " ");
+	public int[] ordenarPorHeapSort(int[] datosParaClasificar, boolean descendente) {
+		for (int i = (datosParaClasificar.length - 1) / 2; i >= 0; i--) {
+			armaHeap(datosParaClasificar, i, datosParaClasificar.length - 1, descendente);
 		}
-		System.out.println(estaOrdenado(resAleatorio, true, true));
-		System.out.println("\n");
-		//------
-
-		int[] resAleatorio2 = clasif.clasificar(vectorAleatorio2,METODO_CLASIFICACION_SHELL);
-		for (int j = 0; j < resAleatorio2.length; j++) {
-			System.out.print(resAleatorio2[j] + " ");
+		for (int i = datosParaClasificar.length - 1; i >= 1; i--) {
+			intercambiar(datosParaClasificar, 0, i);
+			armaHeap(datosParaClasificar, 0, i - 1, descendente);
 		}
-		System.out.println(estaOrdenado(resAleatorio2, true, true));
-		System.out.println("\n");
-		//------
-
-		int[] resAleatorio3 = clasif.clasificar(vectorAleatorio3,METODO_CLASIFICACION_BURBUJA);
-		for (int k = 0; k < resAleatorio3.length; k++) {
-			System.out.print(resAleatorio3[k] + " ");
-		}
-		System.out.println(estaOrdenado(resAleatorio3, true, true));
-		System.out.println("\n");
-		//------
-
-		int[] resAleatorio4 = clasif.clasificar(vectorAleatorio4, METODO_CLASIFICACION_QUICKSORT);
-		for (int l = 0; l < resAleatorio4.length; l++) {
-			System.out.print(resAleatorio4[l] + " ");
-		}
-		System.out.println(estaOrdenado(resAleatorio4, true, true));
-		System.out.println("\n");
+		return datosParaClasificar;
 	}
-
+	
+	private void armaHeap(int[] datosParaClasificar, int primero, int ultimo, boolean descendente) {
+		if (primero < ultimo) {
+			int r = primero;
+			while (r <= ultimo / 2) {
+				if (ultimo == 2 * r) { // r tiene un hijo solo
+					if ((descendente && datosParaClasificar[r] > datosParaClasificar[2 * r]) || (!descendente && datosParaClasificar[r] < datosParaClasificar[2 * r])) {
+						intercambiar(datosParaClasificar, r, 2 * r);
+					}
+					r = ultimo;
+				} else { // r tiene 2 hijos
+					int posicionIntercambio;
+					if ((descendente && datosParaClasificar[2 * r] > datosParaClasificar[2 * r + 1]) || (!descendente && datosParaClasificar[2 * r] < datosParaClasificar[2 * r + 1])) {
+						posicionIntercambio = 2 * r + 1;
+					} else {
+						posicionIntercambio = 2 * r;
+					}
+					if ((descendente && datosParaClasificar[r] > datosParaClasificar[posicionIntercambio]) || (!descendente && datosParaClasificar[r] < datosParaClasificar[posicionIntercambio])) {
+						intercambiar(datosParaClasificar, r, posicionIntercambio);
+						r = posicionIntercambio;
+					} else {
+						r = ultimo;
+					}
+				}
+			}
+		}
+	}
 }
