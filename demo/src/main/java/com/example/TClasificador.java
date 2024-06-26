@@ -7,6 +7,7 @@ public class TClasificador {
 	public static final int METODO_CLASIFICACION_SHELL = 2;
 	public static final int METODO_CLASIFICACION_BURBUJA = 3;
 	public static final int METODO_CLASIFICACION_QUICKSORT = 4;
+	public static final int METODO_CLASIFICACION_SELECCION_DIRECTA = 5;
 
 	/**
 	 * Punto de entrada al clasificador
@@ -26,6 +27,8 @@ public class TClasificador {
 				return ordenarPorBurbuja(datosParaClasificar, ascendente);
 			case METODO_CLASIFICACION_QUICKSORT:
 				return ordenarPorQuickSort(datosParaClasificar, ascendente);
+			case METODO_CLASIFICACION_SELECCION_DIRECTA:
+				return ordenarPorSeleccionDirecta(datosParaClasificar, ascendente);
 			default:
 				System.err.println("Este codigo no deberia haberse ejecutado");
 				break;

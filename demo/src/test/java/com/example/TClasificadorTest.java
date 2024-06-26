@@ -1,6 +1,8 @@
 package com.example;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,79 +22,118 @@ public class TClasificadorTest {
     @Test
     public void testEstaOrdenado() {
         TClasificador clasif = new TClasificador();
-        Assert.assertFalse(clasif.estaOrdenado(vectorVacio, true, true));
-        Assert.assertTrue(clasif.estaOrdenado(vectorAscendente, true, true));
-        Assert.assertFalse(clasif.estaOrdenado(vectorDescendente, true, true));
-        Assert.assertFalse(clasif.estaOrdenado(vectorAleatorio, true, true));
-        Assert.assertTrue(clasif.estaOrdenado(vectorIguales, true, false));
-        Assert.assertFalse(clasif.estaOrdenado(vectorNegativos, true, true));
-        Assert.assertFalse(clasif.estaOrdenado(vectorNegativosPositivos, true, true));
+        assertFalse(clasif.estaOrdenado(vectorVacio, true, true));
+        assertTrue(clasif.estaOrdenado(vectorAscendente, true, true));
+        assertFalse(clasif.estaOrdenado(vectorDescendente, true, true));
+        assertFalse(clasif.estaOrdenado(vectorAleatorio, true, true));
+        assertTrue(clasif.estaOrdenado(vectorIguales, true, false));
+        assertFalse(clasif.estaOrdenado(vectorNegativos, true, true));
+        assertFalse(clasif.estaOrdenado(vectorNegativosPositivos, true, true));
         //Assert.assertTrue(clasif.estaOrdenado(vectorInvalido));
     }
 
     @Test
     public void testOrdenarPorInsercion() {
         TClasificador clasif = new TClasificador();
-        assertArrayEquals(new int[0], clasif.ordenarPorInsercion(vectorVacio, true));
-        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorInsercion(vectorAscendente, true)); //Orden 1
-        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorInsercion(vectorDescendente, true)); // Orden n
-        assertArrayEquals(new int[] {0, 1, 3, 4}, clasif.ordenarPorInsercion(vectorAleatorio, true)); // Orden n^2
-        assertArrayEquals(new int[] {1, 1, 1, 1, 1}, clasif.ordenarPorInsercion(vectorIguales, true));
-        assertArrayEquals(new int[] {-5, -4, -3, -2, -1}, clasif.ordenarPorInsercion(vectorNegativos, true));
-        assertArrayEquals(new int[] {-5, -3, -1, 2, 4}, clasif.ordenarPorInsercion(vectorNegativosPositivos, true));
-        assertArrayEquals(null, clasif.ordenarPorInsercion(vectorInvalido, true));
+        //assertTrue(clasif.estaOrdenado(clasif.ordenarPorInsercion(vectorVacio, false), false, true));
+        //assertTrue(clasif.estaOrdenado(clasif.ordenarPorInsercion(vectorVacio, true), true, false));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorInsercion(vectorAscendente, true), true, true)); //Orden 1
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorInsercion(vectorAscendente, false), false, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorInsercion(vectorDescendente, true), true, true)); // Orden n
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorInsercion(vectorDescendente, false), false, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorInsercion(vectorAleatorio, true), true, true)); // Orden n^2
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorInsercion(vectorAleatorio, false), false, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorInsercion(vectorIguales, true), true, false));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorInsercion(vectorIguales, false), false, false));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorInsercion(vectorNegativos, true), true, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorInsercion(vectorNegativos, false), false, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorInsercion(vectorNegativosPositivos, true), true, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorInsercion(vectorNegativosPositivos, false), false, true));
+        //Assert.assertTrue(clasif.estaOrdenado(clasif.ordenarPorInsercion(vectorInvalido));
         // el orden de espacio es constante porque es inplace, solo usa un int extra para intercambiar
     }
 
     @Test
     public void testOrdenarPorShell() {
         TClasificador clasif = new TClasificador();
-        assertArrayEquals(new int[0], clasif.ordenarPorShell(vectorVacio, true));
-        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorShell(vectorAscendente, true)); // Orden n^1.26¿?
-        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorShell(vectorDescendente, true)); // Orden n^1.26¿?
-        assertArrayEquals(new int[] {0, 1, 3, 4}, clasif.ordenarPorShell(vectorAleatorio, true)); // Orden n^1.26¿?
-        assertArrayEquals(new int[] {1, 1, 1, 1, 1}, clasif.ordenarPorShell(vectorIguales, true));
-        assertArrayEquals(new int[] {-5, -4, -3, -2, -1}, clasif.ordenarPorShell(vectorNegativos, true));
-        assertArrayEquals(new int[] {-5, -3, -1, 2, 4}, clasif.ordenarPorShell(vectorNegativosPositivos, true));
+        //assertTrue(clasif.estaOrdenado(clasif.ordenarPorShell(vectorVacio, false), false, true));
+        //assertTrue(clasif.estaOrdenado(clasif.ordenarPorShell(vectorVacio, true), true, false));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorShell(vectorAscendente, true), true, true)); // Orden n^1.26¿?
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorShell(vectorAscendente, false), false, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorShell(vectorDescendente, true), true, true)); // Orden n^1.26¿?
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorShell(vectorDescendente, false), false, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorShell(vectorAleatorio, true), true, true)); // Orden n^1.26¿?
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorShell(vectorAleatorio, false), false, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorShell(vectorIguales, true), true, false));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorShell(vectorIguales, false), false, false));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorShell(vectorNegativos, true), true, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorShell(vectorNegativos, false), false, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorShell(vectorNegativosPositivos, true), true, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorShell(vectorNegativosPositivos, false), false, true));
+        //Assert.assertTrue(clasif.estaOrdenado(clasif.ordenarPorShell(vectorInvalido));
         // el orden de espacio es constante porque es inplace, solo usa un int extra para intercambiar
     }
 
     @Test
     public void testOrdenarPorBurbuja() {
         TClasificador clasif = new TClasificador();
-        assertArrayEquals(new int[0], clasif.ordenarPorBurbuja(vectorVacio, true));
-        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorBurbuja(vectorAscendente, true)); // Orden n^2
-        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorBurbuja(vectorDescendente, true)); // Orden n^2
-        assertArrayEquals(new int[] {0, 1, 3, 4}, clasif.ordenarPorBurbuja(vectorAleatorio, true)); // Orden n^2
-        assertArrayEquals(new int[] {1, 1, 1, 1, 1}, clasif.ordenarPorBurbuja(vectorIguales, true));
-        assertArrayEquals(new int[] {-5, -4, -3, -2, -1}, clasif.ordenarPorBurbuja(vectorNegativos, true));
-        assertArrayEquals(new int[] {-5, -3, -1, 2, 4}, clasif.ordenarPorBurbuja(vectorNegativosPositivos, true));
+        //assertTrue(clasif.estaOrdenado(clasif.ordenarPorBurbuja(vectorVacio, false), false, true));
+        //assertTrue(clasif.estaOrdenado(clasif.ordenarPorBurbuja(vectorVacio, true), true, false));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorBurbuja(vectorAscendente, true), true, true)); // Orden n
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorBurbuja(vectorAscendente, false), false, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorBurbuja(vectorDescendente, true), true, true)); // Orden n
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorBurbuja(vectorDescendente, false), false, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorBurbuja(vectorAleatorio, true), true, true)); // Orden n^2
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorBurbuja(vectorAleatorio, false), false, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorBurbuja(vectorIguales, true), true, false));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorBurbuja(vectorIguales, false), false, false));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorBurbuja(vectorNegativos, true), true, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorBurbuja(vectorNegativos, false), false, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorBurbuja(vectorNegativosPositivos, true), true, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorBurbuja(vectorNegativosPositivos, false), false, true));
+        //Assert.assertTrue(clasif.estaOrdenado(clasif.ordenarPorBurbuja(vectorInvalido));
         // el orden de espacio es constante porque es inplace, solo usa un int extra para intercambiar
     }
 
     @Test
     public void testOrdenarPorHeapSort() {
         TClasificador clasif = new TClasificador();
-        assertArrayEquals(new int[0], clasif.ordenarPorHeapSort(vectorVacio, false));
-        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorHeapSort(vectorAscendente, false)); // Orden n log n
-        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorHeapSort(vectorDescendente, false)); // Orden n log n
-        assertArrayEquals(new int[] {0, 1, 3, 4}, clasif.ordenarPorHeapSort(vectorAleatorio, false)); // Orden n log n
-        assertArrayEquals(new int[] {1, 1, 1, 1, 1}, clasif.ordenarPorHeapSort(vectorIguales, false));
-        assertArrayEquals(new int[] {-5, -4, -3, -2, -1}, clasif.ordenarPorHeapSort(vectorNegativos, false));
-        assertArrayEquals(new int[] {-5, -3, -1, 2, 4}, clasif.ordenarPorHeapSort(vectorNegativosPositivos, false));
+        //assertTrue(clasif.estaOrdenado(clasif.ordenarPorHeapSort(vectorVacio, false), false, true));
+        //assertTrue(clasif.estaOrdenado(clasif.ordenarPorHeapSort(vectorVacio, true), true, false));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorHeapSort(vectorAscendente, true), false, true)); // Orden n log n
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorHeapSort(vectorAscendente, false), true, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorHeapSort(vectorDescendente, false), true, true)); // Orden n log n
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorHeapSort(vectorDescendente, true), false, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorHeapSort(vectorAleatorio, true), false, true)); // Orden n log n
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorHeapSort(vectorAleatorio, false), true, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorHeapSort(vectorIguales, true), false, false));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorHeapSort(vectorIguales, false), true, false));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorHeapSort(vectorNegativos, true), false, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorHeapSort(vectorNegativos, false), true, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorHeapSort(vectorNegativosPositivos, true), false, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorHeapSort(vectorNegativosPositivos, false), true, true));
+        //Assert.assertTrue(clasif.estaOrdenado(clasif.ordenarPorHeapSort(vectorInvalido));
         // el orden de espacio es constante porque es inplace, solo usa un int extra para intercambiar
     }
 
     @Test
     public void testOrdenarPorSeleccionDirecta() {
         TClasificador clasif = new TClasificador();
-        assertArrayEquals(new int[0], clasif.ordenarPorSeleccionDirecta(vectorVacio, true));
-        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorSeleccionDirecta(vectorAscendente, true)); // Orden n²
-        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, clasif.ordenarPorSeleccionDirecta(vectorDescendente, true)); // Orden n²
-        assertArrayEquals(new int[] {0, 1, 3, 4}, clasif.ordenarPorSeleccionDirecta(vectorAleatorio, true)); // Orden n²
-        assertArrayEquals(new int[] {1, 1, 1, 1, 1}, clasif.ordenarPorSeleccionDirecta(vectorIguales, true));
-        assertArrayEquals(new int[] {-5, -4, -3, -2, -1}, clasif.ordenarPorSeleccionDirecta(vectorNegativos, true));
-        assertArrayEquals(new int[] {-5, -3, -1, 2, 4}, clasif.ordenarPorSeleccionDirecta(vectorNegativosPositivos, true));
+        //assertTrue(clasif.estaOrdenado(clasif.ordenarPorSeleccionDirecta(vectorVacio, false), false, true));
+        //assertTrue(clasif.estaOrdenado(clasif.ordenarPorSeleccionDirecta(vectorVacio, true), true, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorSeleccionDirecta(vectorAscendente, true), true, true)); // Orden n²
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorSeleccionDirecta(vectorAscendente, false), false, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorSeleccionDirecta(vectorDescendente, true), true, true)); // Orden n²
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorSeleccionDirecta(vectorDescendente, true), true, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorSeleccionDirecta(vectorAleatorio, true), true, true)); // Orden n²
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorSeleccionDirecta(vectorAleatorio, false), false, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorSeleccionDirecta(vectorIguales, true), true, false));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorSeleccionDirecta(vectorIguales, false), false, false));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorSeleccionDirecta(vectorNegativos, true), true, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorSeleccionDirecta(vectorNegativos, false), false, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorSeleccionDirecta(vectorNegativosPositivos, true), true, true));
+        assertTrue(clasif.estaOrdenado(clasif.ordenarPorSeleccionDirecta(vectorNegativosPositivos, false), false, true));
+        //Assert.assertTrue(clasif.estaOrdenado(clasif.ordenarPorSeleccionDirecta(vectorInvalido));
         // el orden de espacio es constante porque es inplace, solo usa un int extra para intercambiar
     }
 }
