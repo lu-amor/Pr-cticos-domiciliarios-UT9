@@ -8,6 +8,7 @@ public class TClasificador {
 	public static final int METODO_CLASIFICACION_BURBUJA = 3;
 	public static final int METODO_CLASIFICACION_QUICKSORT = 4;
 	public static final int METODO_CLASIFICACION_SELECCION_DIRECTA = 5;
+	public static final int METODO_CLASIFICACION_HEAPSORT = 6;
 
 	/**
 	 * Punto de entrada al clasificador
@@ -29,6 +30,8 @@ public class TClasificador {
 				return ordenarPorQuickSort(datosParaClasificar, ascendente);
 			case METODO_CLASIFICACION_SELECCION_DIRECTA:
 				return ordenarPorSeleccionDirecta(datosParaClasificar, ascendente);
+			case METODO_CLASIFICACION_HEAPSORT:
+				return ordenarPorHeapSort(datosParaClasificar, ascendente);
 			default:
 				System.err.println("Este codigo no deberia haberse ejecutado");
 				break;
@@ -187,36 +190,36 @@ public class TClasificador {
 		return res;
 	}
 
-	public int[] ordenarPorHeapSort(int[] datosParaClasificar, boolean descendente) {
-		for (int i = (datosParaClasificar.length - 1) / 2; i >= 0; i--) {
-			armaHeap(datosParaClasificar, i, datosParaClasificar.length - 1, descendente);
+	public int[] ordenarPorHeapSort(int[] datos, boolean descendente) {
+		for (int i = (datos.length - 1) / 2; i >= 0; i--) {
+			armaHeap(datos, i, datos.length - 1, descendente);
 		}
-		for (int i = datosParaClasificar.length - 1; i >= 1; i--) {
-			intercambiar(datosParaClasificar, 0, i);
-			armaHeap(datosParaClasificar, 0, i - 1, descendente);
+		for (int i = datos.length - 1; i >= 1; i--) {
+			intercambiar(datos, 0, i);
+			armaHeap(datos, 0, i - 1, descendente);
 		}
-		return datosParaClasificar;
+		return datos;
 	}
 	
-	private void armaHeap(int[] datosParaClasificar, int primero, int ultimo, boolean descendente) {
+	private void armaHeap(int[] datos, int primero, int ultimo, boolean descendente) {
 		if (primero < ultimo) {
 			int r = primero;
 			while (r <= ultimo / 2) {
 				if (ultimo == 2 * r) { // r tiene un hijo solo
-					if ((descendente && datosParaClasificar[r] > datosParaClasificar[2 * r]) || (!descendente && datosParaClasificar[r] < datosParaClasificar[2 * r])) {
-						intercambiar(datosParaClasificar, r, 2 * r);
+					if ((descendente && datos[r] > datos[2 * r]) || (!descendente && datos[r] < datos[2 * r])) {
+						intercambiar(datos, r, 2 * r);
 					}
 					r = ultimo;
 				} else { // r tiene 2 hijos
-					int posicionIntercambio;
-					if ((descendente && datosParaClasificar[2 * r] > datosParaClasificar[2 * r + 1]) || (!descendente && datosParaClasificar[2 * r] < datosParaClasificar[2 * r + 1])) {
-						posicionIntercambio = 2 * r + 1;
+					int posIntercambio;
+					if ((descendente && datos[2 * r] > datos[2 * r + 1]) || (!descendente && datos[2 * r] < datos[2 * r + 1])) {
+						posIntercambio = 2 * r + 1;
 					} else {
-						posicionIntercambio = 2 * r;
+						posIntercambio = 2 * r;
 					}
-					if ((descendente && datosParaClasificar[r] > datosParaClasificar[posicionIntercambio]) || (!descendente && datosParaClasificar[r] < datosParaClasificar[posicionIntercambio])) {
-						intercambiar(datosParaClasificar, r, posicionIntercambio);
-						r = posicionIntercambio;
+					if ((descendente && datos[r] > datos[posIntercambio]) || (!descendente && datos[r] < datos[posIntercambio])) {
+						intercambiar(datos, r, posIntercambio);
+						r = posIntercambio;
 					} else {
 						r = ultimo;
 					}
@@ -225,16 +228,16 @@ public class TClasificador {
 		}
 	}
 
-	public int[] ordenarPorSeleccionDirecta(int[] datosParaClasificar, boolean ascendente) {
-		for (int i = 0; i < datosParaClasificar.length - 1; i++) {
+	public int[] ordenarPorSeleccionDirecta(int[] datos, boolean ascendente) {
+		for (int i = 0; i < datos.length - 1; i++) {
 			int posMinimo = i;
-			for (int j = i + 1; j < datosParaClasificar.length; j++) {
-				if ((ascendente && datosParaClasificar[j] < datosParaClasificar[posMinimo]) || (!ascendente && datosParaClasificar[j] > datosParaClasificar[posMinimo])) {
+			for (int j = i + 1; j < datos.length; j++) {
+				if ((ascendente && datos[j] < datos[posMinimo]) || (!ascendente && datos[j] > datos[posMinimo])) {
 					posMinimo = j;
 				}
 			}
-			intercambiar(datosParaClasificar, i, posMinimo);
+			intercambiar(datos, i, posMinimo);
 		}
-		return datosParaClasificar;
+		return datos;
 	}
 }
