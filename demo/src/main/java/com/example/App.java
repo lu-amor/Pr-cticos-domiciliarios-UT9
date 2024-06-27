@@ -34,7 +34,7 @@ public class App
 			System.out.print(resAleatorio[i] + " ");
 		}
 
-		System.out.println("\nEsta ordenado de forma ascendente?" + clasificador.estaOrdenado(resAleatorio, true, true));
+		System.out.println("\nEsta ordenado de forma ascendente? " + clasificador.estaOrdenado(resAleatorio, true, true));
 		System.out.println("\n");
 
 		int[] resDescendente = clasificador.clasificar(vectorAleatorio, METODO_CLASIFICACION_INSERCION, false);
@@ -43,7 +43,7 @@ public class App
 		for (int k = 0; k < resDescendente.length; k++) {
 			System.out.print(resDescendente[k] + " ");
 		}
-		System.out.println("\nEsta ordenado de forma decreciente?" + clasificador.estaOrdenado(resDescendente, false, true));
+		System.out.println("\nEsta ordenado de forma decreciente? " + clasificador.estaOrdenado(resDescendente, false, true));
 		System.out.println("\n");
 
 	}
@@ -57,7 +57,7 @@ public class App
 		for (int j = 0; j < resAleatorio.length; j++) {
 			System.out.print(resAleatorio[j] + " ");
 		}
-		System.out.println("\nEsta ordenado de forma ascendente?" + clasificador.estaOrdenado(resAleatorio, true, true));
+		System.out.println("\nEsta ordenado de forma ascendente? " + clasificador.estaOrdenado(resAleatorio, true, true));
 		System.out.println("\n");
 
 		int[] resDescendente = clasificador.clasificar(vectorAleatorio, METODO_CLASIFICACION_SHELL, false);
@@ -66,7 +66,7 @@ public class App
 		for (int k = 0; k < resDescendente.length; k++) {
 			System.out.print(resDescendente[k] + " ");
 		}
-		System.out.println("\nEsta ordenado de forma decreciente?" + clasificador.estaOrdenado(resDescendente, false, true));
+		System.out.println("\nEsta ordenado de forma decreciente? " + clasificador.estaOrdenado(resDescendente, false, true));
 		System.out.println("\n");
 	}
 
@@ -79,7 +79,7 @@ public class App
 		for (int k = 0; k < resAleatorio.length; k++) {
 			System.out.print(resAleatorio[k] + " ");
 		}
-		System.out.println("\nEsta ordenado de forma ascendente?" + clasificador.estaOrdenado(resAleatorio, true, true));
+		System.out.println("\nEsta ordenado de forma ascendente? " + clasificador.estaOrdenado(resAleatorio, true, true));
 		System.out.println("\n");
 
 		int[] resDescendente = clasificador.clasificar(vectorAleatorio, METODO_CLASIFICACION_BURBUJA, false);
@@ -88,7 +88,7 @@ public class App
 		for (int k = 0; k < resDescendente.length; k++) {
 			System.out.print(resDescendente[k] + " ");
 		}
-		System.out.println("\nEsta ordenado de forma decreciente?" + clasificador.estaOrdenado(resDescendente, false, true));
+		System.out.println("\nEsta ordenado de forma decreciente? " + clasificador.estaOrdenado(resDescendente, false, true));
 		System.out.println("\n");
 
 	}
@@ -102,7 +102,7 @@ public class App
 		for (int k = 0; k < resAleatorio.length; k++) {
 			System.out.print(resAleatorio[k] + " ");
 		}
-		System.out.println("\nEsta ordenado de forma ascendente?" + clasificador.estaOrdenado(resAleatorio, true, true));
+		System.out.println("\nEsta ordenado de forma ascendente? " + clasificador.estaOrdenado(resAleatorio, true, true));
 		System.out.println("\n");
 
 		int[] resDescendente = clasificador.clasificar(vectorAleatorio, METODO_CLASIFICACION_QUICKSORT, false);
@@ -111,7 +111,7 @@ public class App
 		for (int k = 0; k < resDescendente.length; k++) {
 			System.out.print(resDescendente[k] + " ");
 		}
-		System.out.println("\nEsta ordenado de forma decreciente?" + clasificador.estaOrdenado(resDescendente, false, true));
+		System.out.println("\nEsta ordenado de forma decreciente? " + clasificador.estaOrdenado(resDescendente, false, true));
 		System.out.println("\n");
 
 	}
@@ -125,7 +125,7 @@ public class App
 		for (int k = 0; k < resAleatorio.length; k++) {
 			System.out.print(resAleatorio[k] + " ");
 		}
-		System.out.println("\nEsta ordenado de forma ascendente?" + clasificador.estaOrdenado(resAleatorio, true, true));
+		System.out.println("\nEsta ordenado de forma ascendente? " + clasificador.estaOrdenado(resAleatorio, true, true));
 		System.out.println("\n");
 
 		int[] resDescendente = clasificador.clasificar(vectorAleatorio, METODO_CLASIFICACION_SELECCION_DIRECTA, false);
@@ -134,7 +134,7 @@ public class App
 		for (int k = 0; k < resDescendente.length; k++) {
 			System.out.print(resDescendente[k] + " ");
 		}
-		System.out.println("\nEsta ordenado de forma decreciente?" + clasificador.estaOrdenado(resDescendente, false, true));
+		System.out.println("\nEsta ordenado de forma decreciente? " + clasificador.estaOrdenado(resDescendente, false, true));
 		System.out.println("\n");
 	}
 
@@ -149,7 +149,7 @@ public class App
 		for (int k = 0; k < resAleatorio.length; k++) {
 			System.out.print(resAleatorio[k] + " ");
 		}
-		System.out.println("\nEsta ordenado de forma ascendente?" + clasificador.estaOrdenado(resAleatorio, true, true));
+		System.out.println("\nEsta ordenado de forma ascendente? " + clasificador.estaOrdenado(resAleatorio, true, true));
 		System.out.println("\n");
 
 		int[] resDescendente = clasificador.clasificar(vectorAleatorio, METODO_CLASIFICACION_HEAPSORT, true);
@@ -158,7 +158,7 @@ public class App
 		for (int k = 0; k < resDescendente.length; k++) {
 			System.out.print(resDescendente[k] + " ");
 		}
-		System.out.println("\nEsta ordenado de forma decreciente?" + clasificador.estaOrdenado(resDescendente, false, true));
+		System.out.println("\nEsta ordenado de forma decreciente? " + clasificador.estaOrdenado(resDescendente, false, true));
 		System.out.println("\n");
 	}
 }
